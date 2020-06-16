@@ -1,0 +1,112 @@
+git add (agrega archivos al stage area)
+git add -A (agrega todos los archivos al stage area)
+git commit
+
+*Stash
+git stash
+git stash -u (agrega al stash inclusive los archivos no trackeados en el stage index)
+git stash list
+git stash pop
+
+*Branch
+git branch (lista las branch)
+git branch -a (lista branch locales y remotas)
+git branch nombre_rama (crea rama)
+git branch -d nombre_rama (borra rama)
+
+git checkout nombre_rama (para saltar a una rama)
+git checkout -b nombre_rama (cambia a la rama, y si no existe la crea)
+*TAG
+git tag nombre_tag (
+
+*Revert
+git revert sha-commit
+
+*Fetch
+git fetch remote_name (normalmente es remote_name = origin)
+git fetch -ap (actualiza las ramas y elimina las ramas que no se estén usando o no existan)
+
+*Alias de git
+Agregar ficheros con la terminación git-[nombre_comando]
+Dentro de cada fichero colocar la lógica del comando git.
+Ejemplo: 
+			fichero     Contenido
+			-------    ------------
+			git-st ---> git status
+El ficher deber estar en una carpeta referenciada en el PATH (i.e PATH=${PATH}:~/bin
+
+*Buenas practicas: git ignore global
+touch ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+
+*Estrategias de integración
+ - merge
+ 	+ Trae los cambios de la rama que queremos mergear y genera un commit al histórico.
+ 	git merge nombre_rama_que_traeremos_para_merge
+
+ - rebase
+ 	+ Coloca todos los commits de la rama actual por encima de la rama que traeremos para el rebase.
+	+ Tener cuidado de hacer rebase a la rama master ya que puede generar un push --force lo cual no es
+	  recomendable ya que reconfigura todo el histórico. Al suceder esto puede afectar a los compañeros.
+ 	git rebase nombre_rama_que_traeremos_para_rebase
+	
+ - Squash
+ 	+ Junta commits y toma la fecha del último. Recomendable juntar commits que por sí mismos no significan mucho pero sí en conjunto.
+	+ Al realizar un squash se debe realizar un push --force, por lo cual podemos eliminar cambios que se
+	  haya hecho en la rama remota por algunos de nuestros compañeros.
+	git rebase -i HEAD~[numero_commits_hacia_atrás]
+	
+*Pull
+ CASO: La rama local y remote no están sincronizadas. Tenemos cambios en stage de la rama local y al
+ 	hacer un push nos alerta que hay cambios que debemos traer (pull)
+ + Por defecto el siguiente comando hace un git pull pero con merge y puede generar un commit.
+ git pull origin nombre_rama
+ 
+ + Generalmente no origina commits extra como el caso anterior. Si tenemos cambios en stage lo que hace es:
+ 	1. Saca los cambios que tenemos en el stage y los "guarda"
+	2. Trae los cambios de la rama remota
+	3. Vuelve a colocar nuestros cambios del paso 1
+ 
+ git pull origin nombre_rama --rebase
+ 
+ git pull --rebase --autostash
+ 
+* Deshaciendo errores al comitear
+ + Git revert deshace un cambio pero genera un commit de la reversión
+ git revert [sha_del_commit]
+ 
+ + Deshacer el commit y modifica el histórico, pero no genera ningún commit por la reversión.
+ 
+ git reset [commit] --mixed  => este comando lo que hace es deshacer todos los cambios hasta el commit que deseamos.
+ 								Y por el --mixed nos deja esos cambios deshechos en el working tree.
+ ejemplo:
+ 	git reset HEAD~1 --mixed
+
+ + Descarta todos los cambios que estén, o no, en stage area.
+ 
+ git reset --hard
+ 
+ Si le asigno una referencia a un commit
+ 
+ git reset --hard commit_id => Aqui lo que pasaría es que descartará ese commit (modificando el histórico) así como
+ 						       también descata los cambios que esten, o no, en el stage area.
+ 
+ + Situaciones en las que queremos modificar el último commit, ya sea agregando nuevos cambios (staging area)
+ 	o modificando el mensaje del último commit
+ 
+ git commit --amend --no-edit => Si quitamos el no-edit entonces podriamos modificar el mensaje.
+ 								 En caso no lo quitemos nos agrega todos los cambios de stage área al ultimo commit
+								 sin agregar un commit extra en el histórico-
+								 
+ + Lo que lograremos aqui es copiar un commit (o un rango, ver desc). de una rama hacia otra.
+  El flujo sería:
+  1. Rama actual: elijo el commit(sha) o commits que deseo coger.
+  2. hago un checkout hacia la rama objetivo (i.e master)
+  3. Ya ubicados en la rama objetivo realizo el cherry.pick
+  git cherry-pick [sha_commit]
+ 
+* OTROS
+	git log --grep $string
+	git blame [Nombre_Archivo]
+ 
+  
