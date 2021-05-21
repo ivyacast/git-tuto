@@ -25,8 +25,18 @@ git tag nombre_tag (
 *Revert
 git revert sha-commit
 
+*Remote
+git remote (muestra las ramas remotas)
+git remote -v (muestra las ramas y su URL)
+git remote add <name> <url>
+
+*Push
+ -- Pushing to Git remotes
+  The git push command is used to write to a remote repository.
+  git push <remote-name> <branch-name>
+
 *Fetch
-git fetch remote_name (normalmente es remote_name = origin)
+git fetch remote_name (normalmente es remote_name = origin, y obtiene y actualiza todas las ramas remotas)
 git fetch -ap (actualiza las ramas y elimina las ramas que no se estén usando o no existan)
 
 *Alias de git
@@ -60,6 +70,8 @@ git config --global core.excludesfile ~/.gitignore_global
 	git rebase -i HEAD~[numero_commits_hacia_atrás]
 	
 *Pull
+git pull origin next (merge la rama next que esta en el remoto origin hacia la rama local actual)
+
  CASO: La rama local y remote no están sincronizadas. Tenemos cambios en stage de la rama local y al
  	hacer un push nos alerta que hay cambios que debemos traer (pull)
  + Por defecto el siguiente comando hace un git pull pero con merge y puede generar un commit.
