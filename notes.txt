@@ -1,7 +1,10 @@
 git add (agrega archivos al stage area)
 git add -A (agrega todos los archivos al stage area)
-git commit
 
+git commit
+git commit -m "something"
+git commit -a (comitea todos los archivos que estan en staged area)
+git commit -am "something"
 *Stash
 git stash
 git stash -u (agrega al stash inclusive los archivos no trackeados en el stage index)
