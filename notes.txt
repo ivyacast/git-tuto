@@ -11,7 +11,7 @@ git stash -u (agrega al stash inclusive los archivos no trackeados en el stage i
 git stash list
 git stash pop
 
-*Branch
+|=========== Branch ===========|
 git branch (lista las branch)
 git branch -a (lista branch locales y remotas)
 git branch nombre_rama (crea rama)
@@ -22,24 +22,24 @@ git checkout -b nombre_rama (cambia a la rama, y si no existe la crea)
 *TAG
 git tag nombre_tag (
 
-*Revert
-git revert sha-commit
+|=========== Remote ===========|
 
-*Remote
 git remote (muestra las ramas remotas)
 git remote -v (muestra las ramas y su URL)
 git remote add <name> <url>
 
-*Push
+|=========== Push ===========|
+
  -- Pushing to Git remotes
   The git push command is used to write to a remote repository.
   git push <remote-name> <branch-name>
+  example: git push origin MY_BRANCH
 
-*Fetch
+|=========== Fetch ===========|
 git fetch remote_name (normalmente es remote_name = origin, y obtiene y actualiza todas las ramas remotas)
 git fetch -ap (actualiza las ramas y elimina las ramas que no se estén usando o no existan)
 
-*Alias de git
+|=========== Alias de git ===========|
 Agregar ficheros con la terminación git-[nombre_comando]
 Dentro de cada fichero colocar la lógica del comando git.
 Ejemplo: 
@@ -48,11 +48,11 @@ Ejemplo:
 			git-st ---> git status
 El ficher deber estar en una carpeta referenciada en el PATH (i.e PATH=${PATH}:~/bin
 
-*Buenas practicas: git ignore global
+|=========== Buenas practicas: git ignore global ===========|
 touch ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 
-*Estrategias de integración
+|=========== Estrategias de integración ===========|
  - merge
  	+ Trae los cambios de la rama que queremos mergear y genera un commit al histórico.
  	git merge nombre_rama_que_traeremos_para_merge
@@ -67,9 +67,11 @@ git config --global core.excludesfile ~/.gitignore_global
  	+ Junta commits y toma la fecha del último. Recomendable juntar commits que por sí mismos no significan mucho pero sí en conjunto.
 	+ Al realizar un squash se debe realizar un push --force, por lo cual podemos eliminar cambios que se
 	  haya hecho en la rama remota por algunos de nuestros compañeros.
+	+ Tener en cuenta que al momento de realizar el squash debemos cambiar el valor 'pick' por 'squash' o 's' y dejar el primer commit como el commit base que va a representar la agrupacion de todos los commits que se hizo con squash.
 	git rebase -i HEAD~[numero_commits_hacia_atrás]
 	
-*Pull
+	
+|=========== Pull ===========|
 git pull origin next (merge la rama next que esta en el remoto origin hacia la rama local actual)
 
  CASO: La rama local y remote no están sincronizadas. Tenemos cambios en stage de la rama local y al
@@ -86,9 +88,12 @@ git pull origin next (merge la rama next que esta en el remoto origin hacia la r
  
  git pull --rebase --autostash
  
-* Deshaciendo errores al comitear
+|=========== Deshaciendo errores al comitear ===========|
  + Git revert deshace un cambio pero genera un commit de la reversión
  git revert [sha_del_commit]
+ 
+ + Deshacer un merge request con revert
+ git revert -m 1 <SHA_MERGE_COMMIT>
  
  + Deshacer el commit y modifica el histórico, pero no genera ningún commit por la reversión.
  
@@ -122,6 +127,7 @@ git pull origin next (merge la rama next que esta en el remoto origin hacia la r
  
 * OTROS
 	git log --grep $string
+	git log --oneline --graph --decorate
 	git blame [Nombre_Archivo]
  
   
