@@ -11,6 +11,11 @@ git stash -u (agrega al stash inclusive los archivos no trackeados en el stage i
 git stash list
 git stash pop
 
+|=========== Clean ===========|
+1. Eliminar archivos de unstaged area
+git clean -d -n (-d permite borrar directorios, -n permite ver los archivos antes de borrarlos)
+git clean -d -f ( -f fuerza el borrado)
+
 |=========== Branch ===========|
 git branch (lista las branch)
 git branch -a (lista branch locales y remotas)
