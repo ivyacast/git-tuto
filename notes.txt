@@ -61,6 +61,11 @@ git config --global core.excludesfile ~/.gitignore_global
  - merge
  	+ Trae los cambios de la rama que queremos mergear y genera un commit al histórico.
  	git merge nombre_rama_que_traeremos_para_merge
+	
+	git merge --no-commit --no-ff <branch> // Realiza un merge y comitea asi sea un fast forward (FF es una manera en la cual una rama hija no diverge del padre                                                     sino que es lineal). Lo utilizo para generar un historico al mas minimo detalle.
+						
+	
+	
 
  - rebase
  	+ Coloca todos los commits de la rama actual por encima de la rama que traeremos para el rebase.
@@ -77,7 +82,11 @@ git config --global core.excludesfile ~/.gitignore_global
 	
 	
 |=========== Pull ===========|
-git pull origin next (merge la rama next que esta en el remoto origin hacia la rama local actual)
+git pull origin next // Merge por defecto (merge la rama next que esta en el remoto origin hacia la rama local actual)
+
+git pull --no-ff --no-commit origin REMOTE_BRANCH_TO_PULL_INTO_LOCAL
+
+
 
  CASO: La rama local y remote no están sincronizadas. Tenemos cambios en stage de la rama local y al
  	hacer un push nos alerta que hay cambios que debemos traer (pull)
