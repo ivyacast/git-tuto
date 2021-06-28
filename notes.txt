@@ -12,7 +12,7 @@ git stash list
 git stash pop
 
 |=========== Clean ===========|
-1. Eliminar archivos de unstaged area
+1. Eliminar archivos que no estan rastreados por git (untracked files)
 git clean -d -n (-d permite borrar directorios, -n permite ver los archivos antes de borrarlos)
 git clean -d -f ( -f fuerza el borrado)
 
