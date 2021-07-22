@@ -10,6 +10,7 @@ git stash
 git stash -u (agrega al stash inclusive los archivos no trackeados en el stage index)
 git stash list
 git stash pop
+git stash push -m 'MESSAGE'
 
 |=========== Clean ===========|
 1. Eliminar archivos que no estan rastreados por git (untracked files)
