@@ -104,6 +104,11 @@ git pull --no-ff --no-commit origin REMOTE_BRANCH_TO_PULL_INTO_LOCAL
  git pull --rebase --autostash
  
 |=========== Deshaciendo errores al comitear ===========|
+ + Reversion de un archivo unico a un estado anterior
+  Primero identificamos el commit en el cual el archivo se encuentra en su estado original. Luego con el ID de este commit realizamos lo siguiente
+    git checkout COMMIT_ID -- PATH_DEL_ARCHIVO_UNICO
+  Luego se nos agregara al staged area y procedemos con el commit de reversion
+ 
  + Git revert deshace un cambio pero genera un commit de la reversión
  git revert [sha_del_commit]
  
