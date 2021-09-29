@@ -145,6 +145,13 @@ git pull --no-ff --no-commit origin REMOTE_BRANCH_TO_PULL_INTO_LOCAL
   3. Ya ubicados en la rama objetivo realizo el cherry.pick
   git cherry-pick [sha_commit]
  
+ + Modificar mensajes de commit especificos
+ git rebase -i COMMIT_SHA | HEAD~{NUMERO}
+
++ Modificar mensajes de un commit en especifico pero que es un merge
+ git rebase -ip COMMIT_SHA | HEAD~{NUMERO}  GIT VERSION < 2.22
+ 
+ git rebase -ir COMMIT_SHA | HEAD~{NUMERO} GIT VERSION >= 2.22
 * OTROS
 	git log --grep $string
 	git log --oneline --graph --decorate
