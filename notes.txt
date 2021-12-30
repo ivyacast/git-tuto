@@ -25,6 +25,9 @@ git branch -d nombre_rama (borra rama)
 
 git checkout nombre_rama (para saltar a una rama)
 git checkout -b nombre_rama (cambia a la rama, y si no existe la crea)
+
+git checkout -b nombre_rama [remote_name]/nombre_rama (checkout a rama remota) 
+
 *TAG
 git tag nombre_tag (
 
