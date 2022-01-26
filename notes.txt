@@ -12,6 +12,8 @@ git stash list
 git stash pop
 git stash push -m 'MESSAGE'
 
+git stash apply stash@{n} --aplicar stash especifico
+
 |=========== Clean ===========|
 1. Eliminar archivos que no estan rastreados por git (untracked files)
 git clean -d -n (-d permite borrar directorios, -n permite ver los archivos antes de borrarlos)
